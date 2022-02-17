@@ -1,14 +1,14 @@
 import requests
-from bisect import bisect_left
-from functionTools import *
+from tools.functionTools import *
+
 
 class userInventory:
+
     def __init__(self, playerID):
         self.playerID = playerID
         self.inventory = ""
 
-
-    def getInventory(assetType):
+    def getInventory(self, assetType):
         params = {
             'assetTypes': assetType,
             'limit': '100',
@@ -21,7 +21,7 @@ class userInventory:
 
     def findAsset(self, assetName, assetType):
         playerInventory = self.getInventory(assetType)
-        asset = SearchJSONList(playerInventory, assetName, "name")
+        asset = SearchJSONList(playerInventory['data'], assetName, "name")
         if asset == None:
             return None
         else:
